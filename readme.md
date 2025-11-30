@@ -434,6 +434,12 @@ HTML provides **three types** of lists:
 - Used for terms and their descriptions
 - Perfect for glossaries, metadata, FAQs
 
+Tags:
+
+- `<dl>` = list container
+- `<dt>` = term/name
+- `<dd>` = description (indented automatically)
+
 ```html
 <dl>
   <dt>Coffee</dt>
@@ -496,3 +502,210 @@ You can nest any list inside another:
 | Description      | `<dl>`  | None (indented)    | Terms & definitions, glossaries |
 
 **Pro Tip:** All list items (`<li>`) must be inside a parent list tag (`<ul>`, `<ol>`, or `<dl>`). Never use `<li>` alone!
+
+
+# HTML Images – Complete Markdown Notes
+
+## The `<img>` Tag – Basic Syntax
+```html
+<img src="path/to/image.jpg" alt="Description of image">
+```
+- **Empty tag** → no closing tag needed
+- **Two REQUIRED attributes**:
+  - `src` → path/URL to the image
+  - `alt` → alternate text (for accessibility & fallback)
+
+### Examples
+```html
+<img src="pic_trulli.jpg" alt="Italian Trulli house">
+<img src="images/logo.png" alt="Company logo">
+<img src="https://example.com/photo.jpg" alt="External image">
+```
+
+## Essential Attributes
+
+| Attribute   | Purpose                                    | Example                              |
+|-------------|--------------------------------------------|--------------------------------------|
+| `src`       | Image location (relative or absolute URL)  | `src="img/photo.jpg"`                |
+| `alt`       | Alternate text (screen readers, fallback)  | `alt="Sunset over mountains"`        |
+| `width`     | Width in pixels (or %)                     | `width="500"` or `width="100%"`      |
+| `height`    | Height in pixels (or %)                    | `height="300"`                       |
+| `style`     | Inline CSS (recommended for size)          | `style="width:500px;height:auto;"`   |
+| `loading`   | Lazy loading (improves performance)        | `loading="lazy"`                     |
+
+### Best Practice: Always set width & height
+```html
+<img src="photo.jpg" alt="Beach" width="800" height="600">
+<!-- OR with CSS (preferred) -->
+<img src="photo.jpg" alt="Beach" style="width:800px;height:auto;">
+```
+Prevents layout shift while image loads
+
+## Image Paths
+
+| Type                  | Syntax                                    | Example                                   |
+|-----------------------|-------------------------------------------|-------------------------------------------|
+| Same folder           | `src="image.jpg"`                         |                                           |
+| Subfolder             | `src="images/image.jpg"`                  |                                           |
+| Parent folder         | `src="../image.jpg"`                      |                                           |
+| Root-relative         | `src="/images/image.jpg"`                 | (starts from domain root)                 |
+| External URL          | Full https:// link                        | `src="https://example.com/pic.jpg"`       |
+
+## Animated Images
+HTML fully supports animated GIFs, APNG, and WebP:
+```html
+<img src="dancing-cat.gif" alt="Dancing cat animation">
+```
+
+## Image as a Link
+```html
+<a href="https://example.com">
+  <img src="button.png" alt="Click here">
+</a>
+```
+
+## Floating Images with CSS
+```html
+<img src="smiley.png" alt="Smiley" style="float:right; margin:0 0 10px 10px;">
+<p>Text will wrap around the image...</p>
+```
+Use `float: left` or `float: right`
+
+## Common Image Formats (Browser-Supported)
+
+| Format | Extension         | Best For                       | Notes                     |
+|--------|-------------------|--------------------------------|---------------------------|
+| JPEG   | .jpg, .jpeg       | Photos                         | Good compression          |
+| PNG    | .png              | Logos, icons, transparency     | Lossless + alpha channel  |
+| GIF    | .gif              | Simple animations, small icons | Limited to 256 colors     |
+| WebP   | .webp             | Best quality/size ratio        | Modern, supported widely  |
+| AVIF   | .avif             | Even smaller than WebP         | Newest, excellent quality |
+| SVG    | .svg              | Icons, logos (vector)          | Scalable, editable        |
+
+**Pro Tip:**  
+For responsive images, combine with CSS:
+```css
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+```
+
+
+# HTML Links 
+
+## The `<a>` Tag – Hyperlinks
+```html
+<a href="https://example.com">Visible link text</a>
+```
+- **Most important attribute:** `href` → destination URL
+- Link text (or image/element) is what users click
+- Can wrap **any** element: text, images, buttons, divs, etc.
+
+### Default Browser Styles
+- Unvisited link → **blue + underlined**
+- Visited link → **purple + underlined**
+- Active link → **red + underlined**  
+(Override with CSS anytime!)
+
+## Target Attribute – Where to Open the Link
+
+| Value       | Behavior                                    | Use Case                              |
+|-------------|---------------------------------------------|---------------------------------------|
+| `_self`     | Same tab/window (default)                   | Normal navigation                     |
+| `_blank`    | New tab/window                              | External sites, downloads             |
+| `_parent`   | Parent frame (for frames/iframes)           | Legacy frames                         |
+| `_top`      | Full window (breaks out of all frames)      | Legacy frames                         |
+
+### Example: Open in new tab (most common)
+```html
+<a href="https://google.com" target="_blank">Google (new tab)</a>
+```
+**Pro tip:** Add `rel="noopener"` for security/performance:
+```html
+<a href="https://google.com" target="_blank" rel="noopener">Google</a>
+```
+
+## Absolute vs Relative URLs
+
+| Type           | Example                                    | When to Use                              |
+|----------------|--------------------------------------------|------------------------------------------|
+| Absolute       | `https://example.com/page.html`            | External websites                        |
+| Root-relative  | `/images/photo.jpg`                        | Same site, starts from domain root       |
+| Relative       | `contact.html` or `../about/team.html`    | Same site, relative to current page      |
+
+### Examples
+```html
+<!-- Absolute -->
+<a href="https://w3schools.com">W3Schools</a>
+
+<!-- Root-relative (good for large sites) -->
+<a href="/html/tutorial.html">HTML Tutorial</a>
+
+<!-- Relative (same folder) -->
+<a href="about.html">About</a>
+
+<!-- Relative (parent folder) -->
+<a href="../index.html">Home</a>
+```
+
+## Image as a Link
+```html
+<a href="https://example.com">
+  <img src="button.png" alt="Go to Example">
+</a>
+```
+
+## Link to Email
+```html
+<a href="mailto:hello@example.com">Send Email</a>
+```
+Add subject and body:
+```html
+<a href="mailto:hello@example.com?subject=Hi%20There&body=Hello%20world!">
+  Send pre-filled email
+</a>
+```
+
+## Link to Phone Number (Mobile)
+```html
+<a href="tel:+1234567890">Call: +1 (234) 567-890</a>
+```
+
+## Button as a Link (with JavaScript)
+```html
+<button onclick="location.href='https://example.com'">
+  Go to Example
+</button>
+```
+
+## Title Attribute – Tooltip on Hover
+```html
+<a href="https://example.com" title="Visit Example.com - Best site ever!">
+  Example.com
+</a>
+```
+
+## Best Practices Summary
+
+| Do                                      | Don't                                  |
+|-----------------------------------------|----------------------------------------|
+| Always use descriptive link text        | Avoid “click here”                     |
+| Use `target="_blank"` + `rel="noopener"`| Open new tabs without warning          |
+| Add `alt` to images used as links      | Leave broken or missing `href`         |
+| Use relative URLs for internal links    | Hardcode full URLs for same-site pages |
+
+## Bonus: Common Link Variations
+
+```html
+<!-- Download file -->
+<a href="resume.pdf" download>Download Resume</a>
+
+<!-- Smooth scroll to section -->
+<a href="#contact">Go to Contact</a>
+<div id="contact">...</div>
+
+<!-- Open WhatsApp -->
+<a href="https://wa.me/1234567890">Chat on WhatsApp</a>
+```
