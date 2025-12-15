@@ -995,3 +995,114 @@ These tags are primarily used for their visual appearance, though some still hav
 | `<sub>` | Subscript | **Subscripted text.** Used for chemical formulas or mathematical variables. | `H<sub>2</sub>O` |
 | `<sup>` | Superscript | **Superscripted text.** Used for exponents or footnotes. | `E = mc<sup>2</sup>` |
 
+# HTML Tags Categorized by Function
+
+This summary breaks down the most commonly used HTML tags based on their primary purpose in a web document.
+
+---
+
+## 1. Structural Tags (Layout & Organization)
+
+These tags are used to define the overall structure of the document and group related content together.
+
+| Tag | Function | Level | Note |
+| :--- | :--- | :--- | :--- |
+| `<html>` | Root Element | N/A | Wraps all content on the page. |
+| `<head>` | Metadata Container | N/A | Contains non-visible information (title, links, scripts). |
+| `<body>` | Visible Content | N/A | Contains all content displayed to the user. |
+| `<div>` | Division | Block | A generic container for flow content; often used for layout. |
+| `<span>` | Span | Inline | A generic inline container; often used for styling small phrases. |
+| `<header>` | Semantic | Block | Introductory content, often containing navigation or logos. |
+| `<footer>` | Semantic | Block | Concluding content, often containing copyright or contact info. |
+| `<main>` | Semantic | Block | Defines the dominant content of the document. |
+| `<section>` | Semantic | Block | A thematic grouping of content, typically with a heading. |
+| `<article>` | Semantic | Block | Self-contained, distributable content (e.g., a blog post). |
+| `<nav>` | Semantic | Block | Contains navigation links. |
+
+---
+
+## 2. Formatting & Text Tags (Semantics)
+
+These tags define the appearance and semantic meaning of text within a document.
+
+| Tag | Function | Semantic Meaning | Example |
+| :--- | :--- | :--- | :--- |
+| `<h1>` to `<h6>` | Headings | Title hierarchy (H1 is most important). | `<h1>Page Title</h1>` |
+| `<p>` | Paragraph | Defines a block of text. | `<p>Text content.</p>` |
+| `<strong>` | Strong Importance | Indicates content of strong importance. | `<strong>Danger!</strong>` |
+| `<em>` | Emphasis | Indicates content that should be stressed or emphasized. | `<em>Crucial</em> detail.` |
+| `<b>` | Bold | Visually bold text without extra importance. | `<b>Bold text</b>` |
+| `<i>` | Italic | Text in an alternate voice or mood (e.g., technical terms). | `<i>Technical Term</i>` |
+| `<br>` | Break | Inserts a single line break. | `Line 1<br>Line 2` |
+| `<hr>` | Horizontal Rule | Thematic break (a visual line). | `<hr>` |
+
+---
+
+## 3. Meta Tags (Document Data)
+
+These tags provide necessary data about the HTML document itself.
+
+| Tag | Attribute | Purpose | Note |
+| :--- | :--- | :--- | :--- |
+| `<meta>` | `charset` | Specifies the character encoding (usually `UTF-8`). | Essential for correct display of characters. |
+| `<meta>` | `name="viewport"` | Sets page width to device width. | **Crucial for responsive design.** |
+| `<title>` | N/A | Defines the title shown in the browser tab. | Essential for SEO and user experience. |
+| `<link>` | `rel="stylesheet"` | Links an external style sheet (CSS) to the document. | Must be in `<head>`. |
+| `<link>` | `rel="icon"` | Links a favicon (site icon) to the document. | Must be in `<head>`. |
+
+---
+
+## 4. Form Tags (User Input)
+
+These tags are used to collect data from the user and send it to a server.
+
+| Tag | Function | Example Attribute | Note |
+| :--- | :--- | :--- | :--- |
+| `<form>` | Container | `action="/submit"` | Defines the form and where data is sent. |
+| `<input>` | Input Field | `type="text"`, `type="submit"` | The most versatile tag for data entry. |
+| `<label>` | Label | `for="username"` | Provides an accessible label for an input field. |
+| `<button>` | Button | `type="submit"` | A clickable button for user interaction. |
+| `<textarea>` | Text Area | `rows="5"` | Defines a multi-line text input control. |
+| `<select>` | Select List | N/A | Creates a drop-down list. |
+| `<option>` | Option | `value="val"` | Defines an item in a `<select>` list. |
+
+---
+
+## 5. List Tags (Grouping)
+
+These tags are used to create structured lists of items.
+
+| Tag | Function | Type | Note |
+| :--- | :--- | :--- | :--- |
+| `<ul>` | Unordered List | Bulleted | Items are marked with bullets. |
+| `<ol>` | Ordered List | Numbered/Lettered | Items are marked with numbers or letters. |
+| `<li>` | List Item | Item | Defines an item in both `<ul>` and `<ol>`. |
+| `<dl>` | Description List | N/A | Defines a list of terms and their descriptions. |
+| `<dt>` | Term | N/A | Defines a term (name) in a description list. |
+| `<dd>` | Description | N/A | Defines the description of a term. |
+
+---
+
+## 6. Scripting Tags
+
+These tags are used to incorporate client-side dynamic behavior into the HTML page.
+
+| Tag | Function | Example Attribute | Note |
+| :--- | :--- | :--- | :--- |
+| `<script>` | Client-side Scripting | `src="file.js"` | Used to embed or reference executable code (JavaScript). |
+| `<noscript>` | Alternate Content | N/A | Content to be displayed if the user's browser does not support scripts. |
+
+---
+
+## 7. Embedded Content Tags (Media)
+
+These tags are used to embed external content, images, and media directly into the document.
+
+| Tag | Function | Example Attribute | Note |
+| :--- | :--- | :--- | :--- |
+| `<img>` | Image | `src="path.jpg"`, `alt="text"` | Embeds an image. **Self-closing.** |
+| `<a>` | Anchor | `href="url"`, `target="_blank"` | Creates a hyperlink. Not technically *embedded*, but key for media/navigation. |
+| `<video>` | Video | `controls` | Embeds a video file and its playback controls. |
+| `<audio>` | Audio | `autoplay` | Embeds an audio file and its playback controls. |
+| `<source>` | Media Source | `src="path.mp4"` | Specifies multiple media resources for `<video>` or `<audio>`. |
+| `<iframe>` | Inline Frame | `src="url"` | Embeds another HTML document within the current one. |
