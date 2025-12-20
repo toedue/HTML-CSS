@@ -997,8 +997,6 @@ These tags are primarily used for their visual appearance, though some still hav
 
 # HTML Tags Categorized by Function
 
-This summary breaks down the most commonly used HTML tags based on their primary purpose in a web document.
-
 ---
 
 ## 1. Structural Tags (Layout & Organization)
@@ -1106,3 +1104,351 @@ These tags are used to embed external content, images, and media directly into t
 | `<audio>` | Audio | `autoplay` | Embeds an audio file and its playback controls. |
 | `<source>` | Media Source | `src="path.mp4"` | Specifies multiple media resources for `<video>` or `<audio>`. |
 | `<iframe>` | Inline Frame | `src="url"` | Embeds another HTML document within the current one. |
+
+
+
+# HTML `<nav>` Tag
+
+## Overview
+- The `<nav>` element represents a section of navigation links
+- It's a **semantic HTML5 element** → improves accessibility, SEO, and screen readers
+- Used for major navigation blocks (e.g., menus, site maps, or table of contents)
+- **Not for every link** → reserve for primary navigation (e.g., not footers or sidebars unless they are main nav)
+- Block-level element by default
+
+## Syntax
+```html
+<nav>
+  <!-- Navigation links or content here -->
+</nav>
+```
+- No required attributes, but often combined with lists (`<ul>`, `<ol>`) and links (`<a>`)
+
+## Basic Example
+```html
+<nav>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+```
+**Display (with default styles):** A simple unordered list of links.
+
+## Attributes
+- Supports **global attributes** (e.g., `id`, `class`, `style`, `title`)
+- Common uses:
+  - `class="navbar"` for CSS styling
+  - `aria-label="Main navigation"` for better accessibility
+
+### Example with Attributes
+```html
+<nav class="main-nav" aria-label="Primary site navigation">
+  <a href="/">Home</a> |
+  <a href="/blog">Blog</a> |
+  <a href="/shop">Shop</a>
+</nav>
+```
+
+## Styling with CSS
+- `<nav>` has no default styles beyond being a block
+- Often styled as horizontal menus:
+```css
+nav ul {
+  list-style: none;  /* Remove bullets */
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  display: inline-block;  /* Horizontal layout */
+  margin-right: 15px;
+}
+```
+
+## Nested Navigation
+- Can nest `<nav>` inside other elements (e.g., header)
+```html
+<header>
+  <h1>My Website</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/products">Products</a></li>
+    </ul>
+  </nav>
+</header>
+```
+
+## Accessibility Tips
+- Use `role="navigation"` if needed (but `<nav>` implies it)
+- Ensure links are keyboard-focusable
+- Add `aria-current="page"` to the active link:
+```html
+<li><a href="#home" aria-current="page">Home</a></li>
+```
+
+## When to Use vs. Alternatives
+| Use `<nav>` For                  | Avoid For / Use Instead              |
+|----------------------------------|--------------------------------------|
+| Main site menu                   | Single links → just `<a>`            |
+| Table of contents                | Footer links → `<footer>`            |
+| Pagination (e.g., blog pages)    | Sidebar widgets → `<aside>`          |
+
+## Browser Support
+- Supported in **all modern browsers** (Chrome, Firefox, Safari, Edge, etc.)
+- Fallback: Older browsers treat it as a generic block (still works, but no semantic benefits)
+
+**Pro Tip:** Combine with CSS frameworks like Bootstrap for responsive navbars. Semantic elements like `<nav>` make your code cleaner and more future-proof!
+
+
+# HTML Semantic Elements: Header, Section, Div, Footer
+
+## Overview
+- Semantic elements in HTML5 provide **meaning** to the structure of a web page
+- They improve **accessibility**, **SEO**, and **code readability**
+- Unlike non-semantic elements (e.g., `<div>`), they describe their purpose
+- Common ones include `<header>`, `<section>`, `<footer>`; `<div>` is non-semantic (generic container)
+
+## 1. `<header>` Element
+- Represents **introductory content** or a set of navigational links
+- Typically at the top of a page or section (e.g., site header with logo, nav menu)
+- Can be used multiple times (e.g., per `<article>` or `<section>`)
+- Block-level element
+
+### Syntax & Example
+```html
+<header>
+  <h1>Website Title</h1>
+  <p>Tagline or intro text</p>
+</header>
+```
+
+### Best Practices
+- Include logos, headings (`<h1>`-`<h6>`), search forms, or nav
+- Not for every heading — use when it's introductory
+
+## 2. `<section>` Element
+- Defines a **thematic grouping** of content (e.g., chapters, tabs, or related topics)
+- Should have a heading (`<h1>`-`<h6>`) for outline purposes
+- Use when content can stand alone logically
+- Block-level element
+
+### Syntax & Example
+```html
+<section>
+  <h2>About Us</h2>
+  <p>Company history and mission.</p>
+</section>
+
+<section>
+  <h2>Services</h2>
+  <ul>
+    <li>Web Design</li>
+    <li>SEO</li>
+  </ul>
+</section>
+```
+
+### Best Practices
+- Group related content that shares a theme
+- Avoid for styling only — use CSS classes instead
+
+## 3. `<div>` Element
+- Generic **container** for flow content
+- Non-semantic: No inherent meaning, used for styling/grouping
+- Often with `class` or `id` for CSS/JS targeting
+- Block-level element (can be changed with CSS)
+
+### Syntax & Example
+```html
+<div class="container">
+  <h3>Content Block</h3>
+  <p>This is a generic wrapper.</p>
+</div>
+```
+
+### Best Practices
+- Use when no semantic element fits (fallback)
+- Prefer semantic alternatives where possible (e.g., `<section>` over `<div>` for themed content)
+
+## 4. `<footer>` Element
+- Represents the **footer** of a section or page
+- Typically contains author info, copyright, contact, sitemaps, or related links
+- Can be used multiple times (e.g., per `<article>` or page)
+- Block-level element
+
+### Syntax & Example
+```html
+<footer>
+  <p>&copy; 2025 My Website. All rights reserved.</p>
+  <a href="/contact">Contact Us</a>
+</footer>
+```
+
+### Best Practices
+- Place at the bottom of the page or section
+- Include metadata like dates, authors, or back-to-top links
+
+## Basic Page Structure Example
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sample Page</title>
+</head>
+<body>
+  <header>
+    <h1>Main Header</h1>
+    <nav><!-- Navigation here --></nav>
+  </header>
+  
+  <section>
+    <h2>Section 1</h2>
+    <div class="content">Generic content div inside section.</div>
+  </section>
+  
+  <footer>
+    <p>Footer content</p>
+  </footer>
+</body>
+</html>
+```
+
+## Comparison Table
+
+| Element    | Semantic? | Purpose                          | Multiple Allowed? | Must Have Heading? |
+|------------|-----------|----------------------------------|-------------------|--------------------|
+| `<header>` | Yes      | Introductory/navigational        | Yes               | No                 |
+| `<section>`| Yes      | Thematic content group           | Yes               | Recommended        |
+| `<div>`    | No       | Generic container/styling        | Yes               | No                 |
+| `<footer>` | Yes      | Closing/content metadata         | Yes               | No                 |
+
+# HTML Form, Video, and Iframe Elements
+
+## 1. HTML Forms (`<form>`)
+- Used to **collect user input** and send it to a server
+- Container for inputs, buttons, etc.
+- Data sent via `GET` (URL) or `POST` (body)
+
+### Key Attributes
+- `action`: URL to send data (e.g., `/submit`)
+- `method`: `GET` or `POST`
+- `enctype`: For file uploads (`multipart/form-data`)
+
+### Basic Example
+```html
+<form action="/submit" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name"><br>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br>
+  
+  <input type="submit" value="Send">
+</form>
+```
+
+### Common Input Types
+| Type       | Purpose                          | Example                          |
+|------------|----------------------------------|----------------------------------|
+| `text`     | Single-line text                 | `<input type="text">`            |
+| `email`    | Email validation                 | `<input type="email">`           |
+| `password` | Hidden text                      | `<input type="password">`        |
+| `file`     | File upload                      | `<input type="file">`            |
+| `submit`   | Submit button                    | `<input type="submit">`          |
+
+**Tip:** Use `<label>` for accessibility. Validate on client (JS) & server.
+
+## 2. HTML Video (`<video>`)
+- Embeds **video content** directly in the page
+- Supports multiple formats for compatibility
+- Controls playback with attributes/JS
+
+### Key Attributes
+- `src`: Video file URL
+- `controls`: Show play/pause buttons
+- `autoplay`: Auto-start (muted often required)
+- `loop`: Repeat video
+- `muted`: No sound initially
+- `width`/`height`: Dimensions
+
+### Basic Example
+```html
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+```
+- Use `<source>` for multiple formats (MP4, WebM, Ogg)
+- Fallback text between tags for unsupported browsers
+
+### Advanced Features
+- `<track>` for subtitles: `<track src="subs.vtt" kind="subtitles" srclang="en" label="English">`
+- Poster image: `poster="thumbnail.jpg"`
+
+**Tip:** For accessibility, add captions. Use CSS/JS for custom controls.
+
+## 3. HTML Iframe (`<iframe>`)
+- Embeds **another document** (HTML page, video, map) inside the current page
+- Like a window to external content
+- Useful for YouTube embeds, ads, or widgets
+
+### Key Attributes
+- `src`: URL of embedded content
+- `width`/`height`: Dimensions
+- `allowfullscreen`: Fullscreen support
+- `sandbox`: Security restrictions (e.g., `allow-scripts`)
+- `loading`: `lazy` for performance
+
+### Basic Example
+```html
+<iframe src="https://www.example.com" width="600" height="400" title="Embedded Page">
+  Your browser does not support iframes.
+</iframe>
+```
+- Fallback text for unsupported browsers
+- Title for accessibility
+
+### Common Uses
+- YouTube Video Embed:
+```html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video" allowfullscreen></iframe>
+```
+- Google Maps:
+```html
+<iframe src="https://www.google.com/maps/embed?pb=..." width="600" height="450" allowfullscreen loading="lazy"></iframe>
+```
+
+**Security Note:** Use `sandbox` to restrict untrusted content (e.g., no scripts/forms).
+
+## Combining Elements Example
+```html
+<form action="/upload-video">
+  <label for="video">Upload Video:</label>
+  <input type="file" id="video" name="video" accept="video/*"><br>
+  <input type="submit" value="Upload">
+</form>
+
+<section>
+  <h2>Embedded Video</h2>
+  <video controls>
+    <source src="uploaded-video.mp4" type="video/mp4">
+  </video>
+</section>
+
+<iframe src="https://example.com/player" width="500" height="300"></iframe>
+```
+
+## Summary Table
+
+| Element   | Semantic? | Main Use                       | Requires Closing Tag? | Key Attribute |
+|-----------|-----------|--------------------------------|-----------------------|---------------|
+| `<form>`  | Yes       | User input collection          | Yes                   | `action`      |
+| `<video>` | Yes       | Embed & play videos            | Yes                   | `src`         |
+| `<iframe>`| Yes       | Embed external documents       | Yes                   | `src`         |
+
+**Pro Tip:** For responsive design, wrap in divs with CSS (e.g., `aspect-ratio`). Always prioritize accessibility with `alt`, `title`, and ARIA attributes!
