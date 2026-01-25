@@ -333,7 +333,7 @@ If the parent changes to 400px wide → box becomes 200px automatically! Magic f
 - `width: 100%;` → full width of parent
 - `max-width: 90%;` → never too wide on big screens
 
-### 3. em — Relative to Current Element's Font Size
+### 3. em (ephemeral unit) — Relative to Current (Parent) Element's Font Size
 
 - 1em = current font-size of **this element**.
 - Great for components that should scale together (like buttons).
@@ -368,7 +368,7 @@ If the parent changes to 400px wide → box becomes 200px automatically! Magic f
 }
 ```
 
-### 4. rem — Root Em (The Modern Favorite!) ⭐
+### 4. rem (root ephemeral unit) — Relates to the root element. Root Em (The Modern Favorite!) 
 
 - 1rem = font-size of the **<html> root element**.
 - Usually, browsers default to **16px**, so 1rem = 16px by default.
@@ -440,3 +440,78 @@ Then:
 - **%** → Relative to parent (great for layouts).
 - **em** → Relative to current font (good for self-contained components).
 - **rem** → Relative to root (use this most of the time!).
+
+
+----------------------------
+## CSS Class and ID Selectors
+
+The **class** and **id** attributes are used to target specific HTML elements so you can style them with CSS. While they seem similar, they have distinct rules and use cases.
+
+---
+
+### The ID Selector
+
+The `id` selector uses the id attribute of an HTML element to select a specific, unique element.
+
+* **Uniqueness:** An id must be unique within a page. You should only use a specific id for one single element.
+* **Syntax in CSS:** To select an element with a specific id, write a hash (`#`) character, followed by the id name.
+* **Priority:** IDs have a higher specificity (priority) than classes.
+
+**Example:**
+
+```css
+#header-title {
+  text-align: center;
+  color: blue;
+}
+
+```
+
+---
+
+### The Class Selector
+
+The `class` selector selects elements with a specific class attribute.
+
+* **Reusability:** Unlike IDs, a class can be used on multiple elements within the same page.
+* **Multiple Classes:** An HTML element can have multiple classes (separated by spaces).
+* **Syntax in CSS:** To select elements with a specific class, write a period (`.`) character, followed by the class name.
+
+**Example:**
+
+```css
+.main-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+```
+
+---
+
+### Key Differences
+
+| Feature | ID (`#`) | Class (`.`) |
+| --- | --- | --- |
+| **Usage** | Unique (once per page) | Reusable (multiple times) |
+| **HTML Attribute** | `id="name"` | `class="name"` |
+| **CSS Syntax** | `#name { ... }` | `.name { ... }` |
+| **Priority** | High specificity | Lower specificity |
+| **JavaScript** | Often used for specific logic/anchors | Used for grouping styles |
+
+---
+
+### Specific Element Classing
+
+You can also specify that only specific HTML elements should be affected by a class. To do this, you put the element name before the dot.
+
+**Example:**
+
+```css
+p.error {
+  color: red;
+}
+/* This will only affect <p> elements with class="error", not <div> or <h1> */
+
+```
+----------------------------
