@@ -515,3 +515,99 @@ p.error {
 
 ```
 ----------------------------
+## CSS Selectors
+
+### 1. Simple Selectors
+
+Simple selectors target elements based on their name, id, or class.
+
+* **Element Selector:** Targets elements based on the HTML tag name.
+* `p { color: blue; }` (Targets all `<p>` elements).
+
+
+* **Id Selector:** Targets a unique element using the `id` attribute. Uses the `#` symbol.
+* `#intro { font-weight: bold; }`
+
+
+* **Class Selector:** Targets elements with a specific class attribute. Uses the `.` symbol.
+* `.menu-item { display: block; }`
+
+
+* **Universal Selector:** Targets all HTML elements on the page. Uses the `*` symbol.
+* `* { margin: 0; }`
+
+
+* **Grouping Selector:** Selects all the HTML elements with the same style definitions to minimize code.
+* `h1, h2, p { text-align: center; }`
+
+
+
+---
+
+### 2. Combinator Selectors
+
+Combinators explain the relationship between selectors.
+
+* **Descendant Selector (space):** Matches all elements that are descendants of a specified element.
+* `div p` (Selects all `<p>` inside `<div>`).
+
+
+* **Child Selector (>):** Matches all elements that are a direct child of a specified element.
+* `div > p`
+
+
+* **Adjacent Sibling Selector (+):** Matches an element that is directly after a specific element.
+* `div + p`
+
+
+* **General Sibling Selector (~):** Matches all elements that are siblings of a specified element.
+* `div ~ p`
+
+
+
+---
+
+### 3. Pseudo-class Selectors
+
+Pseudo-classes are used to define a special state of an element.
+
+* **Syntax:** `selector:pseudo-class { property: value; }`
+* **Examples:**
+* `:hover`: Styles an element when you mouse over it.
+* `:active`: Styles an element while it is being clicked.
+* `:nth-child(n)`: Matches every element that is the nth child of its parent.
+
+
+
+---
+
+### 4. Pseudo-element Selectors
+
+Pseudo-elements are used to style specified parts of an element.
+
+* **Syntax:** `selector::pseudo-element { property: value; }`
+* **Examples:**
+* `::first-line`: Adds a special style to the first line of a text.
+* `::before`: Inserts content before the content of an element.
+* `::after`: Inserts content after the content of an element.
+
+
+
+---
+
+### 5. Attribute Selectors
+
+Attribute selectors target elements based on the presence or value of a specific attribute.
+
+* **[attribute]:** Selects elements with a specific attribute.
+* `a[target] { background-color: yellow; }`
+
+
+* **[attribute="value"]:** Selects elements with a specific attribute and value.
+* `input[type="text"] { border: 1px solid black; }`
+
+
+
+---
+
+
