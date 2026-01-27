@@ -608,6 +608,62 @@ Attribute selectors target elements based on the presence or value of a specific
 
 
 
+-----------------
+## CSS Display Property
+
+The `display` property is the most important CSS property for controlling layout. It specifies how an element is rendered on the web page.
+
+---
+
+### display: none
+
+The `none` value removes the element from the page layout entirely.
+
+* **Effect:** The element is hidden, and the page will be rendered as if the element is not there.
+* **Visibility:** Unlike `visibility: hidden;`, which leaves a blank space where the element was, `display: none;` takes up no space.
+* **Use Case:** Hiding menus, toggling content visibility with JavaScript.
+
+---
+
+### display: block
+
+A block-level element always starts on a new line and takes up the full width available.
+
+* **Behavior:** It stretches to the left and right as far as it can.
+* **Sizing:** You can set `width` and `height` values.
+* **Common Elements:** `<div>`, `<h1>` - `<h6>`, `<p>`, `<section>`.
+
+---
+
+### display: inline-block
+
+This value is a mix between `inline` and `block`.
+
+* **Behavior:** It allows elements to sit next to each other on the same line (like `inline`).
+* **Sizing:** Unlike standard `inline` elements, you **can** set a `width` and `height` on an `inline-block` element.
+* **Spacing:** Top and bottom margins/paddings are respected.
+
+---
+
+### display: flex
+
+The `flex` value makes the element a **flex container**, enabling the Flexbox layout model.
+
+* **Container Power:** It provides an easy way to align and distribute space among items in a container, even when their size is unknown or dynamic.
+* **Direction:** You can easily switch between row and column layouts using `flex-direction`.
+* **Alignment:** Uses properties like `justify-content` (horizontal alignment) and `align-items` (vertical alignment) to position children.
+
+---
+
+### Quick Summary Table
+
+| Value | New Line? | Respects Width/Height? | Placement |
+| --- | --- | --- | --- |
+| **none** | N/A | No | Removed from flow |
+| **block** | Yes | Yes | Full width |
+| **inline-block** | No | Yes | Side-by-side |
+| **flex** | Yes (usually) | Yes | Flexible container |
+
 ---
 
 

@@ -1,0 +1,19 @@
+/* #banner {
+    display: none;
+}
+
+.puppy1 {
+  display: inline-block;
+}
+
+.missing-puppy {
+  display: inline-block;
+}
+
+.puppy2{
+    display: inline-block;
+} */
+
+.puppies-section{
+    display: flex;
+}
