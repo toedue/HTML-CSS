@@ -666,4 +666,839 @@ The `flex` value makes the element a **flex container**, enabling the Flexbox la
 
 ---
 
+## CSS: inline vs. inline-block
 
+The main difference between `display: inline` and `display: inline-block` is the ability to set dimensions and how margins/paddings are handled.
+
+---
+
+### display: inline
+
+The `inline` value is the default for elements like `<span>` or `<a>`.
+
+* **Flow:** Elements sit side-by-side on the same line. They only take up as much width as necessary.
+* **Sizing:** You **cannot** set a `width` or `height`. These properties will have no effect.
+* **Vertical Spacing:** You can add `margin` and `padding`, but top and bottom margins/paddings will not push away other block elements. They might overlap surrounding content.
+
+---
+
+### display: inline-block
+
+The `inline-block` value provides a middle ground between `inline` and `block`.
+
+* **Flow:** Elements still sit side-by-side on the same line, just like `inline` elements.
+* **Sizing:** You **can** set a `width` and `height`. The element will respect these dimensions.
+* **Vertical Spacing:** Top and bottom margins and paddings are fully respected and will push other elements away, maintaining the integrity of the layout.
+
+---
+
+### Comparison Table
+
+| Feature | inline | inline-block |
+| --- | --- | --- |
+| **Allows side-by-side** | Yes | Yes |
+| **Respects width/height** | No | Yes |
+| **Vertical margin/padding** | Applied but doesn't push others | Fully respected |
+| **Starts on new line** | No | No |
+| **Default element examples** | `<span>`, `<a>`, `<em>` | None (must be set manually) |
+
+---
+
+
+## CSS Flexbox: Alignment
+
+When an element is set to `display: flex`, it becomes a flex container. The `justify-content` property is used to align the flex items along the **main axis** (horizontally by default).
+
+---
+
+### display: flex
+
+This defines a flex container and enables a flex context for all its direct children.
+
+* **Main Axis:** The primary axis along which flex items are laid out (default is horizontal).
+* **Cross Axis:** The axis perpendicular to the main axis (default is vertical).
+
+---
+
+### justify-content: center
+
+This value aligns the flex items at the center of the container.
+
+* **Effect:** All items are grouped together in the middle of the main axis.
+* **Spacing:** There is equal free space on the left and right sides of the group of items.
+
+---
+
+### justify-content: space-between
+
+This value distributes the flex items evenly along the main axis.
+
+* **Effect:** The first item is pinned to the start of the container, and the last item is pinned to the end.
+* **Spacing:** The remaining empty space is divided equally and placed **between** the items.
+
+---
+
+### justify-content: space-around
+
+This value distributes items evenly with space around them.
+
+* **Effect:** Each item has an equal amount of space on both of its sides.
+* **Visual Note:** The space between two items will be double the space between the edge of the container and the first/last item (because each item contributes its own padding).
+
+---
+
+### Comparison Summary
+
+| Value | Distribution Pattern |
+| --- | --- |
+| **center** | Items are packed in the middle of the container. |
+| **space-between** | Items are spread out; first and last items touch the edges. |
+| **space-around** | Items have equal space on both sides; edges have half-sized gaps. |
+
+---
+
+
+
+
+ ## CSS Position Property
+
+The `position` property specifies the type of positioning method used for an element. There are five different values, each determining how an element is placed on the page.
+
+---
+
+### position: static
+
+This is the default value for every HTML element.
+
+* **Behavior:** Elements render in order as they appear in the document flow.
+* **Properties:** The `top`, `bottom`, `left`, `right`, and `z-index` properties have **no effect** on static elements.
+* **Usage:** Used when you want an element to follow the normal natural layout of the page.
+
+---
+
+### position: relative
+
+The element is positioned relative to its normal (static) position.
+
+* **Behavior:** Setting `top`, `right`, `bottom`, or `left` will cause the element to move away from its original spot.
+* **Space:** The gap where the element used to be is still preserved in the layout.
+* **Primary Use:** Often used as a **container** for elements with `position: absolute`.
+
+---
+
+### position: absolute
+
+The element is positioned relative to its nearest **positioned** ancestor (instead of relative to the viewport, like fixed).
+
+* **Behavior:** It is removed from the normal document flow and does not leave a gap where it would have been.
+* **Reference Point:** If an absolute element has no positioned ancestors (elements with relative, absolute, or fixed), it uses the document body and moves with page scrolling.
+* **Usage:** Useful for placing icons or overlays exactly where you want them inside a specific box.
+
+---
+
+### position: fixed
+
+The element is positioned relative to the **viewport** (the browser window).
+
+* **Behavior:** It stays in the exact same place even if the page is scrolled.
+* **Space:** Like `absolute`, it is removed from the normal flow and leaves no gap.
+* **Usage:** Commonly used for navigation bars or "back to top" buttons that must always remain visible.
+
+---
+
+### position: sticky
+
+(Commonly grouped with these)
+An element with `position: sticky` toggles between `relative` and `fixed`, depending on the user's scroll position.
+
+* **Behavior:** It sticks to a specific spot (e.g., `top: 0`) once its container reaches that point during scrolling.
+
+---
+
+### Quick Comparison Table
+
+| Value | Relative To | Removed from Flow? | Stays on Scroll? |
+| --- | --- | --- | --- |
+| **static** | Normal flow | No | Moves with page |
+| **relative** | Its own original spot | No (gap remains) | Moves with page |
+| **absolute** | Nearest positioned ancestor | Yes | Moves with page |
+| **fixed** | Browser viewport | Yes | **Stays put** |
+
+---
+
+## CSS Units and Sizing
+
+The `width` and `height` properties define the dimensions of an element's content area. Understanding the difference between absolute units, relative units, and size constraints is essential for responsive design.
+
+---
+
+### Basic Sizing Properties
+
+* **width / height:** Sets the specific width or height of an element.
+* **min-width / min-height:** Sets the minimum size. The element cannot be smaller than this value, even if the content is small.
+* **max-width / max-height:** Sets the maximum size. The element cannot grow larger than this value, preventing it from overflowing its container.
+
+---
+
+### Absolute Units
+
+* **px (Pixels):** Fixed-size units. 1px is equal to a single dot on a screen.
+* **Pros:** Precise and predictable.
+* **Cons:** Not responsive; does not scale with browser zoom or screen size settings.
+
+
+
+---
+
+### Relative Units
+
+* **% (Percentage):** Relative to the **parent element's** width or height.
+* Example: `width: 50%;` means the element will take up half the width of its container.
+
+
+* **em:** Relative to the **font-size of the element itself**.
+* If the element font-size is 16px, `2em` = 32px.
+* *Note:* em is "compounding"—if nested, it multiplies based on the parent's font size.
+
+
+* **rem (Root em):** Relative to the **font-size of the root element** (`<html>`).
+* Usually, 1rem = 16px (the default browser size). This is safer for consistent spacing than `em`.
+
+
+
+---
+
+### Special Values
+
+* **auto:** The default value. The browser calculates the width and height based on the content.
+* *Tip:* Using `margin: auto;` on a block element with a set width will center it horizontally.
+
+
+* **inherit:** The element takes the same value as its parent element.
+* **initial:** Sets the property to its default value (e.g., `static` for position or `auto` for width).
+* **vw / vh (Viewport Units):** * `1vw` = 1% of the viewport width.
+* `1vh` = 1% of the viewport height.
+
+
+
+---
+
+### Summary Table
+
+| Unit/Value | Type | Relative To |
+| --- | --- | --- |
+| **px** | Absolute | Fixed dots on screen |
+| **%** | Relative | Parent element's size |
+| **em** | Relative | Current element's font size |
+| **rem** | Relative | Root (`<html>`) font size |
+| **vw / vh** | Relative | Browser window (Viewport) size |
+| **auto** | Automatic | Content or browser calculation |
+
+---
+
+
+## CSS Margin and Padding
+
+The **Box Model** is the foundation of CSS layout. Every HTML element is considered a box, and `margin` and `padding` are the properties that create space around the content.
+
+---
+
+### The Difference at a Glance
+
+* **Padding:** The space **inside** an element, between the content and the border. It enlarges the clickable area of an element and takes on the background color of the element.
+* **Margin:** The space **outside** an element, creating distance between the element and its neighbors. It is always transparent and does not have a background color.
+
+---
+
+### Padding
+
+Padding is used to generate space around an element's content.
+
+* **Individual Sides:**
+* `padding-top`
+* `padding-right`
+* `padding-bottom`
+* `padding-left`
+
+
+* **Sizing:** Can be set in `px`, `pt`, `cm`, `%`, etc. Negative values are **not** allowed.
+
+---
+
+### Margin
+
+Margin is used to create space around elements, outside of any defined borders.
+
+* **Individual Sides:**
+* `margin-top`
+* `margin-right`
+* `margin-bottom`
+* `margin-left`
+
+
+* **Negative Values:** Unlike padding, margins **can** have negative values (used to overlap elements).
+* **Auto Value:** `margin: auto;` is commonly used to horizontally center a block element within its container.
+
+---
+
+### Shorthand Properties
+
+Both properties use a shorthand system to keep code clean. The order is always **Clockwise**: Top, Right, Bottom, Left.
+
+| Number of Values | Example | Result |
+| --- | --- | --- |
+| **4 values** | `margin: 10px 20px 30px 40px;` | Top: 10, Right: 20, Bottom: 30, Left: 40 |
+| **3 values** | `padding: 10px 20px 30px;` | Top: 10, Right & Left: 20, Bottom: 30 |
+| **2 values** | `margin: 10px 20px;` | Top & Bottom: 10, Right & Left: 20 |
+| **1 value** | `padding: 10px;` | All four sides: 10 |
+
+---
+
+### Margin Collapse
+
+A unique behavior of margins is **Margin Collapsing**. When the top and bottom margins of two elements meet, they do not add together; instead, the larger of the two margins is used, and the other "collapses."
+
+*Note: This only happens for top/bottom margins, never for left/right.*
+
+---
+
+
+## CSS text-align Property
+
+The `text-align` property is used to set the horizontal alignment of text inside an element. It is primarily used for text, but it also affects inline and inline-block elements (like images or spans) within a block-level container.
+
+---
+
+### Common Values
+
+* **left:** Aligns the text to the left margin. This is the default for most browsers (especially in left-to-right languages).
+* **right:** Aligns the text to the right margin.
+* **center:** Centers the text between the left and right margins.
+* **justify:** Stretches the lines so that each line has equal width (like in newspapers and magazines). The browser adjusts the spacing between words to make this happen.
+
+---
+
+### Usage on Block Elements
+
+The `text-align` property is applied to the **parent container** (the block-level element) to align the content inside it.
+
+```css
+.container {
+  text-align: center;
+}
+
+```
+
+* **Important:** This property does **not** center the block element itself (like a `<div>`); it only centers the inline content *inside* that `<div>`. To center the `<div>` itself, you would use `margin: auto;`.
+
+---
+
+### text-align-last
+
+This property specifies how to align the last line of a text fragment.
+
+* This is particularly useful when using `text-align: justify`, as it allows you to decide if the very last line should also be justified or just stay aligned to the left.
+
+---
+
+### Comparison Table
+
+| Value | Behavior | Common Use Case |
+| --- | --- | --- |
+| **left** | Aligns to the left edge | Standard reading text |
+| **right** | Aligns to the right edge | Dates, price columns, or RTL languages |
+| **center** | Aligns to the middle | Headlines and titles |
+| **justify** | Spreads text to both edges | Newspaper columns and formal documents |
+
+---
+
+## CSS font-size Property
+
+The `font-size` property sets the size of the text. Managing text size is critical for web design because it affects both readability and the visual hierarchy of the page.
+
+---
+
+### Font Size Values
+
+* **px (Pixels):** Sets the text to a fixed size.
+* Example: `font-size: 16px;`
+* The browser will render the text exactly at that height. It gives the designer full control but does not scale if a user changes their browser's default font settings.
+
+
+* **em:** Sets the size relative to the font-size of the parent element.
+* Example: If the parent element is 16px, `2em` equals 32px.
+* This is useful for maintaining proportions within a specific component.
+
+
+* **rem (Root em):** Sets the size relative to the root element (`<html>`).
+* Example: If the root is 16px, `2rem` is 32px regardless of what the parent element is set to.
+* **Best Practice:** W3Schools and most modern developers recommend using `rem` for accessibility, as it scales correctly with user browser settings.
+
+
+* **% (Percent):** Similar to `em`, it is relative to the parent element's font size.
+* `100%` is usually equal to 16px in most browsers.
+
+
+
+---
+
+### Absolute vs. Relative Size Keywords
+
+You can also use predefined keywords to set the size:
+
+* **Absolute keywords:** `xx-small`, `x-small`, `small`, `medium`, `large`, `x-large`, `xx-large`.
+* These do not change based on the parent.
+
+
+* **Relative keywords:** `smaller`, `larger`.
+* These set the size to be smaller or larger than the parent element.
+
+
+
+---
+
+### Responsive Font Size (vw)
+
+You can use viewport width units (`vw`) to make text size "fluid" so it grows and shrinks with the browser window.
+
+* `font-size: 10vw;` means the font will be 10% of the window's width.
+* **Caution:** While this is responsive, it can become tiny on mobile phones or massive on wide monitors.
+
+---
+
+### Summary Table
+
+| Unit | Type | Description |
+| --- | --- | --- |
+| **px** | Absolute | Fixed size, consistent across browsers. |
+| **em** | Relative | Relative to parent font size. |
+| **rem** | Relative | Relative to the `<html>` font size. |
+| **%** | Relative | Percentage of the parent font size. |
+| **vw** | Viewport | Percentage of the browser window width. |
+
+---
+
+
+## CSS Borders
+
+The `border` properties allow you to specify the style, width, and color of an element's border.
+
+---
+
+### Border Style
+
+The `border-style` property is the most important; **a border will not show up unless this is defined.**
+
+* **dotted:** Defines a dotted border.
+* **dashed:** Defines a dashed border.
+* **solid:** Defines a solid border.
+* **double:** Defines two borders. The width of the two borders is the same as the border-width value.
+* **groove:** Defines a 3D grooved border.
+* **ridge:** Defines a 3D ridged border.
+* **inset:** Defines a 3D inset border.
+* **outset:** Defines a 3D outset border.
+* **none:** Defines no border.
+* **hidden:** Defines a hidden border.
+
+---
+
+### Border Width
+
+The `border-width` property specifies the thickness of the four borders.
+
+* **Values:** Can be set as a specific size (in `px`, `pt`, `cm`, `em`, etc.) or by using one of the three pre-defined values: `thin`, `medium`, or `thick`.
+* **Specific Sides:** You can set the width for specific sides using `border-top-width`, `border-right-width`, etc.
+
+---
+
+### Border Color
+
+The `border-color` property is used to set the color of the four borders.
+
+* **Values:**
+* **Name:** e.g., `red`
+* **Hex:** e.g., `#ff0000`
+* **RGB:** e.g., `rgb(255, 0, 0)`
+* **HSL:** e.g., `hsl(0, 100%, 50%)`
+* **transparent**
+
+
+* **Note:** If `border-color` is not set, it inherits the color of the element.
+
+---
+
+### Border Shorthand
+
+To shorten the code, it is possible to specify all the individual border properties in one single property.
+
+**Syntax:**
+`border: [width] [style] [color];`
+
+**Example:**
+
+```css
+p {
+  border: 5px solid red;
+}
+
+```
+
+---
+
+### Individual Sides
+
+In CSS, there are also properties for specifying each of the borders (top, right, bottom, and left):
+
+* `border-top`
+* `border-right`
+* `border-bottom`
+* `border-left`
+
+**Example:**
+
+```css
+p {
+  border-left: 6px solid blue;
+  background-color: lightgrey;
+}
+
+```
+
+---
+
+### Border Radius
+
+The `border-radius` property is used to add rounded borders to an element.
+
+* **Usage:** `border-radius: 5px;`
+* **Circle:** To make a square element a perfect circle, use `border-radius: 50%;`.
+
+---
+
+## CSS Background Image
+
+The `background-image` property is used to set one or more background images for an element. By default, the image is placed at the top-left corner and repeated so it covers the entire element.
+
+---
+
+### Basic Usage
+
+To add a background image, use the `url()` function.
+
+```css
+body {
+  background-image: url("paper.gif");
+}
+
+```
+
+---
+
+### Background Repeat
+
+By default, the `background-image` property repeats an image both horizontally and vertically.
+
+* **repeat-x:** The image repeats only horizontally.
+* **repeat-y:** The image repeats only vertically.
+* **no-repeat:** The image is shown only once (will not repeat).
+
+---
+
+### Background Position
+
+The `background-position` property is used to define the starting position of a background image.
+
+* **Keywords:** `left`, `right`, `center`, `top`, `bottom`.
+* **Example:** `background-position: right top;` places the image in the upper right corner.
+* **Values:** Can also be set in pixels or percentages (e.g., `50% 50%` for center).
+
+---
+
+### Background Attachment
+
+The `background-attachment` property specifies whether the background image should scroll with the rest of the page, or be fixed.
+
+* **scroll:** The background image scrolls with the page (Default).
+* **fixed:** The background image will not scroll with the rest of the page.
+
+---
+
+### Background Size
+
+The `background-size` property allows you to control the size of the background image.
+
+* **auto:** Default value. The image is displayed in its original size.
+* **length:** Sets the width and height (e.g., `300px 100px`).
+* **percentage:** Sets the size in percentage of the parent element.
+* **cover:** Scales the image so that the content area is completely covered (some parts of the image may be clipped).
+* **contain:** Scales the image to its largest possible size so that both width and height can fit inside the content area.
+
+---
+
+### Shorthand Property
+
+To shorten the code, you can specify all the background properties in one single property called `background`.
+
+**Syntax Order:**
+`background: [color] [image] [repeat] [attachment] [position];`
+
+**Example:**
+
+```css
+body {
+  background: #ffffff url("img_tree.png") no-repeat right top;
+}
+
+```
+
+---
+## CSS font-family Property
+
+The `font-family` property specifies the font for an element. It can hold several font names as a "fallback" system to ensure maximum compatibility across different browsers and operating systems.
+
+---
+
+### Generic Font Families
+
+In CSS, there are five generic font families:
+
+* **Serif:** Fonts with small lines at the ends of characters (e.g., Times New Roman, Georgia).
+* **Sans-serif:** Fonts with "clean" lines; no small lines at the ends (e.g., Arial, Helvetica).
+* **Monospace:** All characters have the same fixed width (e.g., Courier New, Lucida Console).
+* **Cursive:** Imitates handwriting (e.g., Brush Script MT, Comic Sans MS).
+* **Fantasy:** Decorative/playful fonts (e.g., Impact, Copperplate).
+
+---
+
+### Font Family Fallback
+
+If the browser does not support the first font, it tries the next one. This is called a "fallback" list. You should always end the list with a generic family name so the browser can pick a similar available font.
+
+**Syntax Rules:**
+
+* Separate multiple font names with a comma.
+* If a font name is more than one word, it must be in quotation marks (e.g., "Times New Roman").
+
+**Example:**
+
+```css
+p {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+```
+
+---
+
+### Web Safe Fonts
+
+Web safe fonts are fonts that are universally installed across all major operating systems (Windows, Mac, Linux, iOS, and Android).
+
+* **Arial** (Sans-serif)
+* **Verdana** (Sans-serif)
+* **Tahoma** (Sans-serif)
+* **Trebuchet MS** (Sans-serif)
+* **Times New Roman** (Serif)
+* **Georgia** (Serif)
+* **Garamond** (Serif)
+* **Courier New** (Monospace)
+
+---
+
+### Google Fonts
+
+If you do not want to use any of the standard web safe fonts, you can use Google Fonts.
+
+1. Link to the Google Font in your HTML `<head>`:
+`<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">`
+2. Use the font in your CSS:
+`body { font-family: "Sofia", sans-serif; }`
+
+---
+
+### Summary Table
+
+| Property | Description | Example |
+| --- | --- | --- |
+| **font-family** | Sets the font for text | `Arial, sans-serif` |
+| **font-style** | Used for italic text | `italic`, `normal` |
+| **font-weight** | Sets the thickness | `bold`, `900`, `normal` |
+| **font-variant** | Sets small-caps | `small-caps`, `normal` |
+
+---
+
+
+## CSS Color
+
+In CSS, colors are used to style the text, background, borders, and other decorations of an element. Colors can be specified using predefined names or various numerical systems.
+
+---
+
+### Color Names
+
+CSS supports 140 standard color names.
+
+* **Examples:** `Red`, `Blue`, `Green`, `Orange`, `Tomato`, `SlateBlue`, `Violet`, etc.
+* **Usage:** `color: Tomato;`
+
+---
+
+### Background and Text Color
+
+* **color:** Sets the color of the text.
+* **background-color:** Sets the background color of an element.
+
+**Example:**
+
+```css
+h1 {
+  background-color: DodgerBlue;
+  color: white;
+}
+
+```
+
+---
+
+### Color Values
+
+For more precision, CSS uses several numerical formats:
+
+#### 1. RGB (Red, Green, Blue)
+
+Represents the intensity of light for the three primary colors.
+
+* **Syntax:** `rgb(red, green, blue)`
+* **Range:** Each parameter is between 0 and 255.
+* **Example:** `rgb(255, 99, 71)` (Tomato color).
+
+#### 2. HEX (Hexadecimal)
+
+A shorthand for RGB using hexadecimal numbers.
+
+* **Syntax:** `#rrggbb`
+* **Range:** Values range from `00` to `ff`.
+* **Example:** `#ff6347` (Tomato color).
+
+#### 3. HSL (Hue, Saturation, Lightness)
+
+A more intuitive way to think about color based on a color wheel.
+
+* **Hue:** Degree on the color wheel (0-360). 0 is red, 120 is green, 240 is blue.
+* **Saturation:** Percentage value. 0% is a shade of gray, 100% is the full color.
+* **Lightness:** Percentage value. 0% is black, 100% is white.
+* **Example:** `hsl(9, 100%, 64%)` (Tomato color).
+
+---
+
+### Transparency (Alpha)
+
+To add transparency to your colors, you use the "Alpha" channel.
+
+* **RGBA:** `rgba(255, 99, 71, 0.5)` (The 0.5 value means 50% transparent).
+* **HSLA:** `hsla(9, 100%, 64%, 0.5)`
+* **Hex with Alpha:** `#ff634780` (The last two digits represent transparency).
+
+---
+
+### Summary Table
+
+| Method | Syntax Example | Use Case |
+| --- | --- | --- |
+| **Name** | `color: Red;` | Quick testing or standard colors |
+| **RGB** | `rgb(255, 0, 0)` | Standard digital color |
+| **HEX** | `#FF0000` | Most common in web development |
+| **HSL** | `hsl(0, 100%, 50%)` | Easy for creating variations (lighter/darker) |
+| **Alpha** | `rgba(..., 0.5)` | Controlling opacity/transparency |
+
+---
+
+## CSS Specificity and Priority Order
+
+When multiple CSS rules apply to the same element, the browser follows a specific set of rules to determine which styles "win." This hierarchy is known as **Specificity** and the **Cascade**.
+
+---
+
+### 1. The Cascade (Order of Appearance)
+
+If two rules have the same weight, the one defined **last** in the CSS file will be applied.
+
+```css
+p { color: blue; }
+p { color: red; } /* This wins because it comes last */
+
+```
+
+---
+
+### 2. Specificity Hierarchy
+
+Specificity is a score or rank that determines which style declaration is applied. The hierarchy from highest to lowest is:
+
+#### I. Inline Styles
+
+Styles applied directly to the HTML element using the `style` attribute.
+
+* **Example:** `<h1 style="color: blue;">`
+* **Weight:** Highest (1000)
+
+#### II. IDs
+
+The `#` selector.
+
+* **Example:** `#header`
+* **Weight:** High (100)
+
+#### III. Classes, Attributes, and Pseudo-classes
+
+The `.`, `[]`, and `:` selectors.
+
+* **Example:** `.menu`, `[type="text"]`, `:hover`
+* **Weight:** Medium (10)
+
+#### IV. Elements and Pseudo-elements
+
+The tag names and `::` selectors.
+
+* **Example:** `h1`, `div`, `p`, `::before`
+* **Weight:** Low (1)
+
+---
+
+### 3. The `!important` Rule
+
+The `!important` rule overrides all other specificity rules. It should be used sparingly, as it makes debugging difficult.
+
+* **Usage:** `color: red !important;`
+* **Effect:** Even an inline style or an ID cannot override a property marked as `!important`.
+
+---
+
+### Priority Summary Table
+
+| Rank | Selector Type | Example |
+| --- | --- | --- |
+| **1** | **!important** | `color: red !important;` |
+| **2** | **Inline Style** | `style="color: blue;"` |
+| **3** | **ID** | `#navbar` |
+| **4** | **Class / Attribute** | `.btn` or `[href]` |
+| **5** | **Element** | `h1`, `p`, `div` |
+| **6** | **Universal Selector** | `*` |
+
+---
+
+### Inheritance
+
+Some properties are inherited from the parent element (like `color` or `font-family`), while others are not (like `border` or `margin`). If a style is set directly on an element, it will always override a style inherited from a parent.
+
+---
+
+### Calculation Example
+
+Consider this HTML: `<div id="main" class="container">Text</div>`
+
+1. `div { color: red; }` (Score: 1)
+2. `.container { color: green; }` (Score: 10)
+3. `#main { color: blue; }` (Score: 100)
+
+**Result:** The text will be **blue** because the ID has the highest specificity.
